@@ -6,7 +6,7 @@ tokenStart = url.index("=") + 1
 tokenEnd = url.index("&")
 token = url[tokenStart:tokenEnd]
 
-
+print token 
 #new command
 newCommand = "&command3=UnlockAllSafes"
 
