@@ -1,0 +1,15 @@
+2. 
+Programs that rely on MD5 hashes to authenticate the integrity of programs would be in danger because we have proved that programs that have the same MD5 hash can behave differently. So, one program that would perform the correct installation/execution could have the same MD5 hash as a malicious program that could install a virus. Both of these programs would be accepted by these systems, and so both would be able to proceed, potentially causing damage. 
+
+3. 
+If public exponents are at least 2^16 + 1, we ensure that the encrypted message is long enough so that it modulus “wraps” around, and we cannot take a root, and therefore cannot decrypt the cipher text. Long public exponents also add an element of randomness so that attackers have a very small chance of guessing a correct value for e.
+
+4.
+a)
+Padding Oracle attacks rely on the fact that an oracle (server) provides feedback about whether the padding of an encrpyted message is correct or not. Attackers can use this information to decrpyt a ciphertext, C. By changing the last byte of C and sending it to the server, the server will leak feedback telling the attacker whether or not the padding was correct. The attack can repeat this process a maxmimum of 256 times to eventually find the correct last byte, which corresponds to the last byte of the plaintext, P. The attacker then repeats this process with the second last byte, and continues until they correctly decrypt the entire message. 
+b)
+AES consists of 128 bits (16 bytes). The big-O time complexity of the oracle padding attack is 255*16 per block. This is linear, so O(no. of blocks). This is concerning because without this attack, the attempts required to bruteforce a 128 bit key is 2^128, which is exponential time complexity. Meaning the oracle attack makes a server insecure. 
+c)
+If you used a timing side channel to record how long it took to receive each piece of feedback, you could find out what type of error a request is getting. For example, it is likely that an incorrect key will take a shorter amount of time to fail than an incorrect padding. So, if you measured the time it took to receive an error message, you could correctly tell what type of error it was, and proceed to use a padding oracle attack effectively. You could find out the different timings of error by testing what you know to be an incorrect key vs an incorrect padding. 
+d)
+
