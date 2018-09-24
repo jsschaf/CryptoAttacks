@@ -1,3 +1,6 @@
+1.
+Using token= HMAC{user’s password : (user=...)} would elimate the possibility of a length extension attack because the attacker would be forced to know the user's password in order to produce a valid token. When the user's password is a part of the token itself, an attacker can extend the "user=..." part of the url, adding the desired command, and then rehash without ever needing to know the password during the process. If the password is used as the key for the hash value of "user=...", then an attacker would be unable to rehash the extended url without knowing the password beforehand. This completely elimates the possibility of a length extension attack.
+
 2. 
 Programs that rely on MD5 hashes to authenticate the integrity of programs would be in danger because we have proved that programs that have the same MD5 hash can behave differently. So, one program that would perform the correct installation/execution could have the same MD5 hash as a malicious program that could install a virus. Both of these programs would be accepted by these systems, and so both would be able to proceed, potentially causing damage. 
 
@@ -12,4 +15,4 @@ AES consists of 128 bits (16 bytes). The big-O time complexity of the oracle pad
 c)
 If you used a timing side channel to record how long it took to receive each piece of feedback, you could find out what type of error a request is getting. For example, it is likely that an incorrect key will take a shorter amount of time to fail than an incorrect padding. So, if you measured the time it took to receive an error message, you could correctly tell what type of error it was, and proceed to use a padding oracle attack effectively. You could find out the different timings of error by testing what you know to be an incorrect key vs an incorrect padding. 
 d)
-
+The use of a secret padding scheme will not prevent a padding oracle attack because an attacker could cycle through bits as usual until they received an invalid padding error. Once they get that error, they will know where the padding is and can continue the process to find out how much padding is present. Now the padding scheme is no longer a secret and a normal padding oracle attack can be used. Kerckhoff's principle states that a cryptographic system should be secure even if everything is known about it except the key. Therefore, relying on a secret padding scheme for security is inherently flawed. 
