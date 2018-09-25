@@ -1,6 +1,13 @@
 1.
 Using token= HMAC{user’s password : (user=...)} would elimate the possibility of a length extension attack because the attacker would be forced to know the user's password in order to produce a valid token. When the user's password is a part of the token itself, an attacker can extend the "user=..." part of the url, adding the desired command, and then rehash without ever needing to know the password during the process. If the password is used as the key for the hash value of "user=...", then an attacker would be unable to rehash the extended url without knowing the password beforehand. This completely elimates the possibility of a length extension attack.
 
+Hash vs HMAC:
+
+Hash (such as md5) - doesnt use a key, just a random generator. Can be extended because you don’t need to know the secret, it was already incorporated as part of the message (at the beginning). 
+
+HMAC - uses a key, in this case the users password, which is hidden from an attacker. This is therefore a more secure alternative because you need to know the secret to add anything on. 
+
+
 2. 
 Programs that rely on MD5 hashes to authenticate the integrity of programs would be in danger because we have proved that programs that have the same MD5 hash can behave differently. So, one program that would perform the correct installation/execution could have the same MD5 hash as a malicious program that could install a virus. Both of these programs would be accepted by these systems, and so both would be able to proceed, potentially causing damage. 
 
