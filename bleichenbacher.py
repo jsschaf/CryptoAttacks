@@ -39,9 +39,6 @@ sig =  int(signature,16)
 
 [forged_signature, worked] = integer_nthroot(sig, 3)
 
-print worked
-print forged_signature
-
 forged_signature += 1; #to account for the rounding of integers
 
 
