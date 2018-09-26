@@ -39,7 +39,8 @@ sig = int(signature,16)
 
 [forged_signature, worked] = integer_nthroot(sig, 3)
 
-forged_signature += 1; #to account for the rounding of integers
+if (worked == 0):
+    forged_signature += 1; #to account for the rounding of integers
 
 print integer_to_base64(forged_signature)
 
